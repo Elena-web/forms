@@ -1,17 +1,33 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FormData } from '../util/types';
 
-const initialState: FormData[] = [];
+interface FormDataWithFlag extends FormData {
+  isNew?: boolean;
+}
 
-export const formDataSlice = createSlice({
+interface FormState {
+  data: FormDataWithFlag[];
+}
+
+const initialState: FormState = {
+  data: [],
+};
+
+const formDataSlice = createSlice({
   name: 'formData',
   initialState,
   reducers: {
     addDataForm: (state, action: PayloadAction<FormData>) => {
-      state.push(action.payload);
+      state.data.push({ ...action.payload, isNew: true });
+    },
+
+    markDataOld: (state, action: PayloadAction<number>) => {
+      if (state.data[action.payload]) {
+        state.data[action.payload].isNew = false;
+      }
     },
   },
 });
 
-export const { addDataForm } = formDataSlice.actions;
+export const { addDataForm, markDataOld } = formDataSlice.actions;
 export default formDataSlice.reducer;

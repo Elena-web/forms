@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Modal } from './Modal';
 import UncontrolledForm from './UncontrolledForm';
 import ReactHookForm from './ReactHookForm';
+import { MainDataList } from './MainDataList';
 
 export function HomePage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -45,6 +46,7 @@ export function HomePage() {
           )}
           {activeForm === 'hook' && <ReactHookForm onClose={closeModal} />}
         </Modal>
+        <MainDataList />
       </main>
     </div>
   );

@@ -102,7 +102,7 @@ export default function ReactHookForm({ onClose }: ReactHookFormProps) {
           </label>
         </div>
         <button type="submit" disabled={!isValid} className={styles.submit}>
-          SUBMIT
+          Submit form
         </button>
       </form>
     </div>
