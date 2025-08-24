@@ -8,7 +8,7 @@ import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import reactCompiler from "eslint-plugin-react-compiler";
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  { ignores: ['dist', '.vite/**'] },
   {
     extends: [
       js.configs.recommended,
@@ -40,6 +40,6 @@ export default tseslint.config(
       react: {
         version: "detect",
       },
-    },
+    },	
   },
 );

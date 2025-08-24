@@ -23,7 +23,8 @@ describe('fileToBase64', () => {
 
       readAsDataURL() {
         this.result = mockResult;
-        this.onload?.(new ProgressEvent('load'));
+        const event = new ProgressEvent('load') as ProgressEvent<FileReader>;
+        this.onload?.(event);
       }
     }
 
@@ -41,7 +42,10 @@ describe('fileToBase64', () => {
       onerror: ((ev: ProgressEvent<FileReader>) => void) | null = null;
 
       readAsDataURL() {
-        this.onerror?.(new ProgressEvent('error'));
+        const errorEvent = new ProgressEvent(
+          'error'
+        ) as ProgressEvent<FileReader>;
+        this.onerror?.(errorEvent);
       }
     }
 

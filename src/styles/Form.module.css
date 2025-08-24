@@ -99,3 +99,8 @@
   border-color: #ff9800; 
   background-color: #fff3e0;
 }
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

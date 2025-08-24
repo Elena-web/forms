@@ -125,7 +125,11 @@ export default function ReactHookForm({ onClose }: ReactHookFormProps) {
             <p className={styles.error}>{errors.isAccept?.message}</p>
           </label>
         </div>
-        <button type="submit" disabled={!isValid} className={styles.submit}>
+        <button
+          type="submit"
+          disabled={!isValid}
+          className={`${styles.submit} ${!isValid ? styles.disabled : ''}`}
+        >
           Submit form
         </button>
       </form>

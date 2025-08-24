@@ -76,6 +76,7 @@ export default function UncontrolledForm({ onClose }: ReactHookFormProps) {
         onSubmit={handleSubmit}
         aria-label="classic-form"
         noValidate
+        data-testid="uncontrolled-form"
         className={styles.form}
       >
         <div className={styles.form__group}>
