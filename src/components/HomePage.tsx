@@ -1,10 +1,24 @@
-//import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Modal } from './Modal';
+import UncontrolledForm from './UncontrolledForm';
+import ReactHookForm from './ReactHookForm';
 
 export function HomePage() {
-  //   const [activeForm, setActiveForm] = useState<'uncontrolled' | 'hook' | ''>(
-  //     ''
-  //   );
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activeForm, setActiveForm] = useState<'uncontrolled' | 'hook' | null>(
+    null
+  );
+
+  const openForm = (formType: 'uncontrolled' | 'hook') => {
+    setActiveForm(formType);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setActiveForm(null);
+  };
 
   return (
     <div className="layout">
@@ -18,11 +32,19 @@ export function HomePage() {
         <div className="form-selector">
           <h2>Select a form type</h2>
           <div className="button-group">
-            <button>Uncontrolled Form</button>
-            <button>React Hook Form</button>
+            <button onClick={() => openForm('uncontrolled')}>
+              Uncontrolled Form
+            </button>
+            <button onClick={() => openForm('hook')}>React Hook Form</button>
           </div>
         </div>
-        <div className="form-render"></div>
+
+        <Modal isOpen={modalOpen} onClose={closeModal}>
+          {activeForm === 'uncontrolled' && (
+            <UncontrolledForm onClose={closeModal} />
+          )}
+          {activeForm === 'hook' && <ReactHookForm onClose={closeModal} />}
+        </Modal>
       </main>
     </div>
   );
