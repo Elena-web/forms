@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 import { useEffect } from 'react';
-import { markDataOld } from '../store/formDataSlice';
-import styles from '../styles/Form.module.css';
+import { markDataOld } from '../../store/formDataSlice';
+import styles from '../../styles/Form.module.css';
 
 export function MainDataList() {
   const dispatch = useDispatch();

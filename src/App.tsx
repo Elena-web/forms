@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { HomePage } from './components/HomePage';
+import { HomePage } from './components/HomePage/HomePage';
 import './styles/App.css';
 
 function App() {
@@ -9,5 +9,4 @@ function App() {
     </Routes>
   );
 }
-
 export default App;

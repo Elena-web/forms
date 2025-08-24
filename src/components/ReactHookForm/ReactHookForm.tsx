@@ -1,13 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDataForm } from '../store/formDataSlice';
+import { addDataForm } from '../../store/formDataSlice';
 import { useNavigate } from 'react-router-dom';
-import { validationSchema } from '../util/validationSchema';
-import { FormData2 } from '../util/types';
-import { RootState } from '../store/store';
-import { fileToBase64 } from '../util/fileToBase64';
-import styles from '../styles/Form.module.css';
+import { validationSchema } from '../../util/validationSchema';
+import { FormData2 } from '../../util/types';
+import { RootState } from '../../store/store';
+import { fileToBase64 } from '../../util/fileToBase64';
+import styles from '../../styles/Form.module.css';
 
 interface ReactHookFormProps {
   onClose: () => void;
@@ -42,40 +42,54 @@ export default function ReactHookForm({ onClose }: ReactHookFormProps) {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>React Hook Form</h1>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={styles.form}
+        data-testid="react-hook-form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <label htmlFor="name" className={styles.form__box}>
           First Name
-          <input {...register('name')} />
+          <input id="name" {...register('name')} />
           <p className={styles.error}>{errors.name?.message}</p>
         </label>
         <label htmlFor="age" className={styles.form__box}>
           Age
-          <input {...register('age')} />
+          <input id="age" {...register('age')} />
           <p className={styles.error}>{errors.age?.message?.split(',')[0]}</p>
         </label>
         <label htmlFor="email" className={styles.form__box}>
           Email
-          <input {...register('email')} />
+          <input id="email" {...register('email')} />
           <p className={styles.error}>{errors.email?.message}</p>
         </label>
         <label htmlFor="password" className={styles.form__box}>
           Password
-          <input {...register('password')} type="text" />
+          <input id="password" {...register('password')} type="text" />
           <p className={styles.error}>{errors.password?.message}</p>
         </label>
         <label htmlFor="passwordConfirm" className={styles.form__box}>
           Confirm Password
-          <input {...register('passwordConfirm')} type="text" />
+          <input
+            id="passwordConfirm"
+            {...register('passwordConfirm')}
+            type="text"
+          />
           <p className={styles.error}>{errors.passwordConfirm?.message}</p>
         </label>
+
         <label htmlFor="image" className={styles.form__box}>
           Upload image
-          <input {...register('image')} type="file" accept=".png, jpeg, jpg" />
+          <input
+            id="image"
+            {...register('image')}
+            type="file"
+            accept=".png, jpeg, jpg"
+          />
           <p className={styles.error}>{errors.image?.message}</p>
         </label>
         <label htmlFor="country" className={styles.form__box}>
           Choose country
-          <select {...register('country')}>
+          <select id="country" {...register('country')}>
             {countries.map((country) => (
               <option key={country} value={country}>
                 {country}
@@ -85,11 +99,21 @@ export default function ReactHookForm({ onClose }: ReactHookFormProps) {
         </label>
         <div className={styles.gender}>
           <label htmlFor="male">
-            <input {...register('gender')} type="radio" value="male" />
+            <input
+              id="male"
+              {...register('gender')}
+              type="radio"
+              value="male"
+            />
             Male
           </label>
           <label htmlFor="female">
-            <input {...register('gender')} type="radio" value="female" />
+            <input
+              id="female"
+              {...register('gender')}
+              type="radio"
+              value="female"
+            />
             Female
           </label>
         </div>
@@ -97,7 +121,7 @@ export default function ReactHookForm({ onClose }: ReactHookFormProps) {
         <div className={styles.form__group}>
           <label htmlFor="isAccept" className={styles.form__box}>
             Accept Terms & Conditions
-            <input {...register('isAccept')} type="checkbox" />
+            <input id="isAccept" {...register('isAccept')} type="checkbox" />
             <p className={styles.error}>{errors.isAccept?.message}</p>
           </label>
         </div>

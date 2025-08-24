@@ -22,12 +22,18 @@ const formDataSlice = createSlice({
     },
 
     markDataOld: (state, action: PayloadAction<number>) => {
-      if (state.data[action.payload]) {
-        state.data[action.payload].isNew = false;
+      const index = action.payload;
+      if (state.data[index]) {
+        state.data[index].isNew = false;
       }
+    },
+
+    clearFormData: (state) => {
+      state.data = [];
     },
   },
 });
 
-export const { addDataForm, markDataOld } = formDataSlice.actions;
+export const { addDataForm, markDataOld, clearFormData } =
+  formDataSlice.actions;
 export default formDataSlice.reducer;

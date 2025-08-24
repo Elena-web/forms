@@ -2,12 +2,12 @@ import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ValidationError } from 'yup';
-import { validationSchema } from '../util/validationSchema';
-import { addDataForm } from '../store/formDataSlice';
-import { RootState } from '../store/store';
-import { fileToBase64 } from '../util/fileToBase64';
-import { MyForm } from '../util/types';
-import styles from '../styles/Form.module.css';
+import { validationSchema } from '../../util/validationSchema';
+import { addDataForm } from '../../store/formDataSlice';
+import { RootState } from '../../store/store';
+import { fileToBase64 } from '../../util/fileToBase64';
+import { MyForm } from '../../util/types';
+import styles from '../../styles/Form.module.css';
 
 type FormErrorMap = Record<string, string>;
 
@@ -72,7 +72,12 @@ export default function UncontrolledForm({ onClose }: ReactHookFormProps) {
   return (
     <section>
       <h2>Classic Uncontrolled Form</h2>
-      <form onSubmit={handleSubmit} noValidate className={styles.form}>
+      <form
+        onSubmit={handleSubmit}
+        aria-label="classic-form"
+        noValidate
+        className={styles.form}
+      >
         <div className={styles.form__group}>
           <label className={styles.form__box}>
             Name
@@ -143,10 +148,23 @@ export default function UncontrolledForm({ onClose }: ReactHookFormProps) {
         <fieldset className={styles.gender}>
           <legend>Gender</legend>
           <label className={styles.form__box}>
-            <input type="radio" name="gender" value="male" required /> Male
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              required
+              aria-label="Male"
+            />{' '}
+            Male
           </label>
           <label className={styles.form__box}>
-            <input type="radio" name="gender" value="female" /> Female
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              aria-label="Female"
+            />{' '}
+            Female
           </label>
           <span className={styles.error}>{errors.gender}</span>
         </fieldset>
